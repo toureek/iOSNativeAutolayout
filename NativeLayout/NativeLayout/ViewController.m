@@ -5,8 +5,8 @@
 #import "AnchorViewController.h"
 
 NSString *const kViewControllerCell = @"cell";
-NSString *const kTextForiOS8 = @"Constains on iOS8";
-NSString *const kTextForiOS9 = @"Anchor on iOS9";
+NSString *const kTextLabelForiOS8 = @"Constains on iOS8";
+NSString *const kTextLabelForiOS9 = @"Anchor on iOS9";
 
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -47,10 +47,8 @@ NSString *const kTextForiOS9 = @"Anchor on iOS9";
                                       reuseIdentifier:kViewControllerCell];
     }
     
-    cell.contentView.backgroundColor = cell.backgroundColor = [UIColor whiteColor];
-    cell.textLabel.text = indexPath.row == 0 ? kTextForiOS8 : kTextForiOS9;
+    cell.textLabel.text = indexPath.row == 0 ? kTextLabelForiOS8 : kTextLabelForiOS9;
     cell.textLabel.textAlignment = NSTextAlignmentLeft;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
 }
@@ -72,20 +70,20 @@ NSString *const kTextForiOS9 = @"Anchor on iOS9";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    [self pageHandler:(NSIndexPath *)indexPath];
+    [self pageHandlerAtIndex:indexPath.row];
 }
 
-- (void)pageHandler:(NSIndexPath *)indexPath {
-    UIViewController *viewcontroller;
-    
-    if (indexPath.row == 0) {
-        
-    }
-    else if (indexPath.row == 0) {
-        
-    }
+- (void)pageHandlerAtIndex:(NSUInteger)index {
+    UIViewController *nextPage = [self targetViewControllerAtIndex:index];
+    [self pushToNextViewController:nextPage];
 }
 
+- (UIViewController *)targetViewControllerAtIndex:(NSUInteger)index {
+    return index == 0 ? [[ConstainsViewController alloc] init] : [[AnchorViewController alloc] init];
+}
 
+- (void)pushToNextViewController:(UIViewController *)vc {
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 @end
