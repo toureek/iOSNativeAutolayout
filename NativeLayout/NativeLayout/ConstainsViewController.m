@@ -1,7 +1,12 @@
 
 #import "ConstainsViewController.h"
+#import "ConstainsView.h"
+
 
 @interface ConstainsViewController ()
+
+@property (nonatomic, strong) ConstainsView *constainsView;
+
 
 @end
 
@@ -10,13 +15,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.view.backgroundColor = [UIColor greenColor];
-    
+    self.title = @"constainsView";
+    self.view.backgroundColor = [UIColor whiteColor];
+    [self initAndSetupConstainsView];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-
+- (void)initAndSetupConstainsView {
+    CGRect frame = CGRectMake(0, 0, self.view.frame.size.width, kConstainsViewHeight);
+    _constainsView = [[ConstainsView alloc] initWithFrame:frame];
+    [self.view addSubview:_constainsView];
 }
+
+
 
 @end
