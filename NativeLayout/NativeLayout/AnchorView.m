@@ -1,6 +1,5 @@
 
 #import "AnchorView.h"
-#import "ConstainsView.h"
 
 
 @interface AnchorView()
@@ -69,7 +68,10 @@
 - (void)addBackgroundImageViewConstains {
     _backgroundImageView.translatesAutoresizingMaskIntoConstraints = NO;
     if (IOS9_OR_GREATER) {
-        
+        [_backgroundImageView.topAnchor constraintEqualToAnchor:self.topAnchor].active = YES;
+        [_backgroundImageView.leftAnchor constraintEqualToAnchor:self.leftAnchor].active = YES;;
+        [_backgroundImageView.rightAnchor constraintEqualToAnchor:self.rightAnchor].active = YES;;
+        [_backgroundImageView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor constant:-kImageBottomPadding].active = YES;
     }
     else {
         NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem:_backgroundImageView
@@ -111,7 +113,10 @@
 - (void)addAvatorImageViewConstains {
     _avatorImageView.translatesAutoresizingMaskIntoConstraints = NO;
     if (IOS9_OR_GREATER) {
-        
+        [_avatorImageView.widthAnchor constraintEqualToConstant:kAvatorSize].active = YES;
+        [_avatorImageView.heightAnchor constraintEqualToConstant:kAvatorSize].active = YES;
+        [_avatorImageView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor constant:-kLeftRightPadding/2].active = YES;
+        [_avatorImageView.rightAnchor constraintEqualToAnchor:self.rightAnchor constant:-kLeftRightPadding].active = YES;
     }
     else {
         NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:_avatorImageView
@@ -154,7 +159,10 @@
     _userNameLabel.translatesAutoresizingMaskIntoConstraints = NO;
     
     if (IOS9_OR_GREATER) {
-        
+        [_userNameLabel.centerYAnchor constraintEqualToAnchor:_avatorImageView.centerYAnchor].active = YES;
+        [_userNameLabel.heightAnchor constraintEqualToConstant:17].active = YES;
+        [_userNameLabel.leftAnchor constraintEqualToAnchor:self.leftAnchor constant:kLeftRightPadding].active = YES;
+        [_userNameLabel.rightAnchor constraintEqualToAnchor:_avatorImageView.leftAnchor constant:-kLeftRightPadding].active = YES;
     }
     else {
         NSLayoutConstraint *centerYConstraint = [NSLayoutConstraint constraintWithItem:_userNameLabel

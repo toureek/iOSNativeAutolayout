@@ -19,7 +19,7 @@ NSString *const kTextLabelForiOS9 = @"Anchor on iOS9";
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.title = @"Native AutoLayout";
+    self.title = @"AutoLayout";
     [self initAndSetUpTableView];
 }
 
