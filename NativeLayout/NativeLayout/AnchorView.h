@@ -3,4 +3,6 @@
 
 @interface AnchorView : UIView
 
+- (instancetype)initWithFrame:(CGRect)frame;
+
 @end
